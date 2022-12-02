@@ -1,0 +1,40 @@
+name: CI with Maven
+ 
+ push:
+  branches: 
+  - '!master'
+  - '!main'
+ on: workflow_dispatch
+ 
+
+jobs:
+
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Tag: $TAG"
+          echo "Testtype: $TESTTYPE"
+          echo "Language: $LANG"
+        env:
+          LEVEL: ${{ inputs.tag }}
+          TAGS: ${{ inputs.testtype }}
+          ENVIRONMENT: ${{ inputs.language }}
+  
+  testing:
+    runs-on: ubuntu-latest
+    container: crowdar/lippia:3.1.2.2
+    env: 
+      TAG: "@Success"
+      TESTTYPE: "Secuencial"
+      LANG: "@EN"
+    
+    steps:
+    - uses: actions/checkout@v3
+    - run: echo $TAG,
+                $TESTTYPE,
+                $LANG
+    - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+    - uses: actions/upload-artifact@v3
+      with:
+        path: target/extent-reports/
