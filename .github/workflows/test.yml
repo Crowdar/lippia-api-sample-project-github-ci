@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: testgino
 
 on: workflow_dispatch
  # push:
@@ -11,9 +11,9 @@ jobs:
     container: crowdar/lippia:3.1.2.2
     if: contains( github.ref, 'main')||contains( github.ref, 'master')
     env: 
-      TAG: "@Success"
-      TESTTYPE: "Secuencial"
-      LANG: "@EN"  
+      TAG: ${{ inputs.tag }}
+      TESTTYPE: ${{ inputs.testtype }}
+      LANG: ${{ inputs.lang }}
     steps:
     - uses: actions/checkout@v3
     - run: echo $TAG, $TESTTYPE, $LANG
