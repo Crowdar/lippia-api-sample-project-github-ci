@@ -18,17 +18,13 @@ jobs:
           echo "Testtype: $TESTTYPE"
           echo "Language: $LANG"
         env:
-          LEVEL: ${{ inputs.tag }}
-          TAGS: ${{ inputs.testtype }}
-          ENVIRONMENT: ${{ inputs.language }}
+          LEVEL: ${{ inputs.Tag }}
+          TAGS: ${{ inputs.Testtype }}
+          ENVIRONMENT: ${{ inputs.Language }}
   
   testing:
     runs-on: ubuntu-latest
     container: crowdar/lippia:3.1.2.2
-    env: 
-      TAG: "@Success"
-      TESTTYPE: "Secuencial"
-      LANG: "@EN"
     
     steps:
     - uses: actions/checkout@v3
