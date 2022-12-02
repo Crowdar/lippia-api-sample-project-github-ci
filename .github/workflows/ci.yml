@@ -35,6 +35,14 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     container: crowdar/lippia:3.1.2.2
+    if: contains( github.ref, 'master'|| github.ref, 'main')
+    env: 
+      TAG: "@Success"
+      TESTTYPE: "Secuencial"
+      LANG: "@EN"
+      if: contains( github.ref != 'master'&& github.ref != 'main')
+      when: manual
+    
     steps:
     - uses: actions/checkout@v3
     - run: echo $TAG,
@@ -42,13 +50,6 @@ jobs:
                 $LAN
     - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
             
-    - if: contains( github.ref, 'master'|| github.ref, 'main')
-    env: 
-      TAG: "@Success"
-      TESTTYPE: "Secuencial"
-      LANG: "@EN"
-      if: contains( github.ref != 'master'&& github.ref != 'main')
-      when: manual
     
       
     
