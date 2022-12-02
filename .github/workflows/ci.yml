@@ -49,6 +49,9 @@ jobs:
                 $TESTTYPE,
                 $LANG
     - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+    - uses: actions/upload-artifact@v3
+      with:
+        path: target/extent-reports/
             
     
       
