@@ -40,8 +40,8 @@ jobs:
       TAG: "@Success"
       TESTTYPE: "Secuencial"
       LANG: "@EN"
-     # if: contains( github.ref != 'master'&& github.ref != 'main')
-     # when: manual
+      if: contains( github.ref != 'main')|| contains( github.ref != 'main')
+      when: manual
     
     steps:
     - uses: actions/checkout@v3
