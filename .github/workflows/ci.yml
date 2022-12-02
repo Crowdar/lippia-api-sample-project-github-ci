@@ -35,12 +35,12 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     container: crowdar/lippia:3.1.2.2
-    if: contains( github.ref, 'dev')||contains( github.ref, 'dev')
+    if: contains( github.ref == 'main')||contains( github.ref == 'master')
     env: 
       TAG: "@Success"
       TESTTYPE: "Secuencial"
       LANG: "@EN"
-      if: contains( github.ref != 'main')|| contains( github.ref != 'main')
+      if: contains( github.ref != 'dev')|| contains( github.ref != 'dev')
       when: manual
     
     steps:
