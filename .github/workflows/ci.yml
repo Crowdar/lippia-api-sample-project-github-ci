@@ -35,13 +35,13 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     container: crowdar/lippia:3.1.2.2
-    if: contains( github.ref, 'master')
+    if: contains( github.ref, 'main')
     env: 
       TAG: "@Success"
       TESTTYPE: "Secuencial"
       LANG: "@EN"
-      if: contains( github.ref != 'master'&& github.ref != 'main')
-      when: manual
+     # if: contains( github.ref != 'master'&& github.ref != 'main')
+     # when: manual
     
     steps:
     - uses: actions/checkout@v3
