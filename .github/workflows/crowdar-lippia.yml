@@ -10,7 +10,7 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     container: crowdar/lippia:3.1.2.2
-    if: contains( github.ref, 'main' , 'master')
+    if: contains( github.ref, 'main') || contains( github.ref, 'master')
     steps:
     - uses: actions/checkout@v3
     - name: Test with Maven
