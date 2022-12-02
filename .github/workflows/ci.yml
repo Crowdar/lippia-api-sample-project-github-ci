@@ -14,6 +14,6 @@ jobs:
         LANG: "@EN"
     steps:
       - name: Build
-        run: mvn -B package --file pom.xml    
+        uses: qcastel/github-actions-maven-cmd@1.0.1
       - name: Check
         run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
