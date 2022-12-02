@@ -13,5 +13,7 @@ jobs:
         TESTTYPE: "Secuencial"
         LANG: "@EN"
     steps:
+      - name: Build
+        run: mvn -B package --file pom.xml    
       - name: Check
         run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
