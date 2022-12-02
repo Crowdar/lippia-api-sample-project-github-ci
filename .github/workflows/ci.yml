@@ -17,12 +17,12 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     container: crowdar/lippia:3.1.2.2
-    if: contains( github.ref, 'main')||contains( github.ref, 'master')
+    if: contains( github.ref, 'dev')||contains( github.ref, 'dev')
     env: 
       TAG: "@Success"
       TESTTYPE: "Secuencial"
       LANG: "@EN"
-      if: contains( github.ref, 'dev')|| contains( github.ref, 'dev')
+      if: contains( github.ref, 'main')|| contains( github.ref, 'master')
       on: workflow_dispatch
     
     steps:
