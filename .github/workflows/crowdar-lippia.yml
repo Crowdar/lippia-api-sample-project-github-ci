@@ -1,10 +1,8 @@
-
-name: crowdar/lippia:3.1.2.2 #Java CI with Maven
+name: crowdar/lippia:3.1.2.2 #testgino
 
 on:
   push:
     branches: [ "**" ]
-  
 
 jobs:
   testing:
@@ -15,13 +13,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Test with Maven
       run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
-      env: 
-        TAG: "@Success"
-        TESTTYPE: "Secuencial"
-        LANG: "@EN"
-    #if: contains( github.ref, 'main' , 'master')
-    #steps:
-    #- uses: actions/checkout@v3
-    #- name: Test with Maven
-    #  run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
-     
+      env:
+        TAG: ${{ inputs.tag }}
+        TESTTYPE: ${{ inputs.testtupe }}
+        LANG: ${{ inputs.lang }}
