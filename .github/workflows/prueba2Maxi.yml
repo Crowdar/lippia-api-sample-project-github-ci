@@ -1,0 +1,45 @@
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: 'Filter type'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - @Success
+        - @Smoke
+      testtype:
+        description: 'Test type'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - Secuencial
+        - Paralel
+      language:
+        description: 'Language used to test against'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - @EN
+        - @ES
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    container: crowdar/lippia:3.1.2.2
+    
+    steps:
+    - uses: actions/checkout@v3
+    - run: |   #el "|" dice que se van a ejecutar multiples comandos
+          echo "Filter type: $TAG"
+          echo "testtype: $TESTTYPE"
+          echo "Environment: $LANG"
+    - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+      env:
+          TAG: ${{ inputs.filter }}
+          TESTTYPE: ${{ inputs.testtype }}
+          LANG: ${{ inputs.language }}
+
