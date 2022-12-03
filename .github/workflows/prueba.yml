@@ -1,37 +1,53 @@
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'
+      filter:
+        description: 'Filter type'
         required: true
         default: 'warning'
         type: choice
         options:
-        - info
-        - warning
-        - debug
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
-      environment:
-        description: 'Environment to run tests against'
-        type: input
+        - @Success
+        - @Smoke
+      testtype:
+        description: 'Test type'
         required: true
+        default: 'warning'
+        type: choice
         options:
-        - info
-        - warning
-        - debug
+        - Secuencial
+        - Paralel
+      language:
+        description: 'Language used to test against'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - @EN
+        - @ES
 
 jobs:
-  log-the-inputs:
+  testing:
     runs-on: ubuntu-latest
+    container: crowdar/lippia:3.1.2.2
+    env: 
+      TAG: "@Success"
+      TESTTYPE: "Secuencial"
+      LANG: "@EN"
+    
     steps:
-      - run: |
-          echo "Log level: $LEVEL"
-          echo "Tags: $TAGS"
-          echo "Environment: $ENVIRONMENT"
-        env:
-          LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
-          ENVIRONMENT: ${{ inputs.environment }}
+    - uses: actions/checkout@v3
+    - run: |   #el |hace dice que se van a ejecutar multiples comandos
+          echo "Filter type: $TAG"
+          echo "testtype: $TESTTYPE"
+          echo "Environment: $LANG"
+    - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+      env:
+          TAG: ${{ inputs.filter }}
+          TESTTYPE: ${{ inputs.testtype }}
+          LANG: ${{ inputs.language }}
+
+    - uses: actions/upload-artifact@v3
+      with:
+        path: target/extent-reports/
+        
