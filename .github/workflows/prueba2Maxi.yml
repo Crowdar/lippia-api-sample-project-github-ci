@@ -7,8 +7,8 @@ on:
         default: 'warning'
         type: choice
         options:
-        - @Success
-        - @Smoke
+        - '@Success'
+        - '@Smoke'
       testtype:
         description: 'Test type'
         required: true
@@ -23,8 +23,8 @@ on:
         default: 'warning'
         type: choice
         options:
-        - @EN
-        - @ES
+        - '@EN'
+        - '@ES'
 
 jobs:
   testing:
@@ -43,3 +43,7 @@ jobs:
           TESTTYPE: ${{ inputs.testtype }}
           LANG: ${{ inputs.language }}
 
+    - uses: actions/upload-artifact@v3
+      with:
+        path: target/extent-reports/
+   
