@@ -1,3 +1,6 @@
+name: crowdar/lippia:3.1.2.2/manual
+
+
 on:
   workflow_dispatch:
     inputs:
