@@ -1,0 +1,37 @@
+name: CI with Maven
+on: 
+ push:
+ workflow_dispatch:
+
+jobs:
+
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if branch is not main
+        if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
+        run: |
+          echo "This workflow should not be triggered with workflow_dispatch on a branch other than main"
+          exit 1
+      - run: |
+          echo "Tag: $TAG"
+          echo "Testtype: $TESTTYPE"
+          echo "Language: $LANG"
+        env:
+          LEVEL: ${{ inputs.Tag }}
+          TAGS: ${{ inputs.Testtype }}
+          ENVIRONMENT: ${{ inputs.Language }}
+  
+  testing:
+    runs-on: ubuntu-latest
+    container: crowdar/lippia:3.1.2.2
+    
+    steps:
+    - uses: actions/checkout@v3
+    - run: echo $TAG,
+                $TESTTYPE,
+                $LANG
+    - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+    - uses: actions/upload-artifact@v3
+      with:
+        path: target/extent-reports/
