@@ -2,7 +2,7 @@ name: crowdar/lippia:3.1.2.2 #Java CI with Maven
 
 on:
   push:
-    branches: [ "**" ]
+    branches: [ "main" , "master" ]
   pull_request:
     branches: [ "main" , "master" ]
 
@@ -15,7 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test with Maven
-      run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+    - run: echo $TAG,
+                $TESTTYPE,
+                $LANG
+    - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
       env: 
         TAG: "@Success"
         TESTTYPE: "Secuencial"
