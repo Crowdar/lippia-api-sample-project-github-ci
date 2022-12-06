@@ -15,11 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test with Maven
-    - run: echo $TAG,
-                $TESTTYPE,
-                $LANG
-    - run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
-    env: 
+    - run: |
+        echo $TAG,
+             $TESTTYPE,
+             $LANG
+        mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+      env: 
         TAG: "@Success"
         TESTTYPE: "Secuencial"
         LANG: "@EN"
