@@ -19,7 +19,7 @@ on:
         type: choice
         options:
         - Secuencial
-        - Paralel
+        - Paralell
       language:
         description: 'Language used to test against'
         required: true
