@@ -3,7 +3,7 @@
 - Es un proyecto que tiene como finalidad automatizar el testeo del codigo ingresado al repositorio, utilizando el framework Lippia.
 
 ### Consideraciones
-- El proyecto contiene la carpeta .github/workflows donde se encuentran dos archivos de automatización de pipelines que se ejecutan segun donde se haga el commit o el merge:
+- El proyecto contiene la carpeta .github/workflows donde se encuentran dos archivos de automatización de pipelines "Actions" que se ejecutan segun donde se haga el commit o el merge:
 - Cuando el commit se realiza a main o master el test se ejecuta automaticamente con el archivo Workflow-API-Auto.yml
 - Cuando el commit se realiza a otro branch el test se debe ejecutar manualmente, corriendo el archivo Workflow-API-Manual.yml
 
