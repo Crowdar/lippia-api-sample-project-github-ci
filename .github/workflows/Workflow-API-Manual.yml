@@ -10,8 +10,8 @@ on:
         default: 'warning'
         type: choice
         options:
-        - '@Success'
         - '@Smoke'
+        - '@Success'
       testtype:
         description: 'Test type'
         required: true
