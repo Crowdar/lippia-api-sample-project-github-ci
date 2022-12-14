@@ -57,15 +57,34 @@ inputs:
         - '@regression' #se agrega este test que aparecera en la lista al disparar el pipeline
   ```
 
-![Env-mod](docs/images/Env-mod.png)
+![Env-list](docs/images/Env-list.png)
 
+
+- Se puede seleccionar una variable del tipo "Choice" para darle al usuario la opción de elegir entre opciones prefijadas, o usar variables tipo "input" para dejar un campo de texto libre.
+```
+inputs:
+      #filter:
+        #description: 'Filter type'
+        #required: true
+        #default: 'warning'
+        #type: choice
+        #options:
+        #- '@Smoke'
+        #- '@Success'
+      filter:
+        description: 'Filter type'
+        required: true
+        default: '@Success'
+        type: input
+```
+
+![Env-mod](docs/images/Env-mod.png)
   
 * para realizar las pruebas utilizamos el comando: 
 ```
 $ mvn clean test
 ```
 
-- Se puede seleccionar una variable del tipo "Choice" para darle al usuario la opción de elegir entre opciones prefijadas, o usar variables tipo "input" para dejar un campo de texto libre. 
 
 ### Los reportes son generados en una carpeta llamada **Target**, que sera generada una vez que la ejecucion de las pruebas haya finalizado.
 
