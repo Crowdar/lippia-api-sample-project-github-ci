@@ -4,14 +4,20 @@ name: Workflow API manual
 on:
   workflow_dispatch:
     inputs:
+      #filter:
+        #description: 'Filter type'
+        #required: true
+        #default: 'warning'
+        #type: choice
+        #options:
+        #- '@Smoke'
+        #- '@Success'
       filter:
         description: 'Filter type'
         required: true
-        default: 'warning'
-        type: choice
-        options:
-        - '@Smoke'
-        - '@Success'
+        default: '@Success'
+        type: input
+        
       testtype:
         description: 'Test type'
         required: true
