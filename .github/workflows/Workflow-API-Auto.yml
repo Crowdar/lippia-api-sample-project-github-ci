@@ -21,7 +21,8 @@ jobs:
                 "TESTTYPE= "$TESTTYPE,
                 "LANG= "$LANG
     - name: Realizando Pruebas
-      run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+      continue-on-error: true
+      run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdareeee.cucumber.filter.language="'$LANG'"
     - name: Haciendo Zip
       run: ls
     - name: Subiendo informe
