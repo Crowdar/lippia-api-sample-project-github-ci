@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     container: crowdar/lippia:3.1.2.2
     env: 
-      TAG: "@Successos"
-      TESTTYPE: "Secuenciales"
+      TAG: "@Success"
+      TESTTYPE: "Secuencial"
       LANG: "@EN"
     
     steps:
@@ -23,8 +23,6 @@ jobs:
     - name: Realizando Pruebas
       continue-on-error: true
       run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
-    - name: Haciendo Zip
-      run: ls && cd target && ls
     - name: Subiendo informe
       uses: actions/upload-artifact@v3
       with:
