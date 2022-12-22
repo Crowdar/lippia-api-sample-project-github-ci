@@ -56,5 +56,5 @@ jobs:
     - name: Subiendo Informes
       uses: actions/upload-artifact@v3
       with:
-        path: target/extent-reports/
+        path: target/reports/
    
