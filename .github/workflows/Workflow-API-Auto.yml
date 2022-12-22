@@ -22,6 +22,8 @@ jobs:
                 "LANG= "$LANG
     - name: Realizando Pruebas
       run: mvn test -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
+    - name: Haciendo Zip
+      run: cd target/report && ls
     - name: Subiendo informe
       uses: actions/upload-artifact@v3
       with:
