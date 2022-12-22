@@ -49,6 +49,7 @@ jobs:
     - name: Valores de las variables de entorno
       run: echo "Filter type= "$TAG, "testtype= "$TESTTYPE, "Environment= "$LANG
     - name: Realizando Pruebas
+      continue-on-error: true
       run: mvn tes -P$TESTTYPE -Dcrowdar.cucumber.filter="'$TAG'" -Dcrowdar.cucumber.filter.language="'$LANG'"
     - name: path
       run: ls && echo "----" && cd target && ls
