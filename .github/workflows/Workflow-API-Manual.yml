@@ -24,7 +24,7 @@ on:
         default: 'warning'
         type: choice
         options:
-        - Secuencial
+        - Secuenciales
         - Paralell
       language:
         description: 'Language used to test against'
